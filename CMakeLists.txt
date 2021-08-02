@@ -45,6 +45,10 @@ message(STATUS "TARGET_OS: ${TARGET_OS}")
 
 add_definitions(-DPLATFORM_${TARGET_OS})
 
+if(NOT WIN32)
+	add_compile_options(-fPIC)
+endif()
+
 #Find dependency Library, curl, openssl
 #if (${TARGET_OS} STREQUAL "WINDOWS")
 #	set(WLIB_TARGET "Win32")
