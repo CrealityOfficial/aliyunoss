@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-configure_file(src/Config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/include/alibabacloud/oss/Config.h @ONLY)
+configure_file(src/Config.h.in ${CMAKE_CURRENT_BINARY_DIR}/oss/Config.h @ONLY)
 
 
 #common header
@@ -92,18 +92,18 @@ file(GLOB sdk_model_src
 )
 
 if (NOT OSS_DISABLE_RESUAMABLE)
-file(GLOB sdk_resumable_src "src/resumable/*.cc")
+	file(GLOB sdk_resumable_src "src/resumable/*.cc")
 endif()
 
 if (NOT OSS_DISABLE_ENCRYPTION)
-file(GLOB sdk_encryption_src "src/encryption/*.cc")
+	file(GLOB sdk_encryption_src "src/encryption/*.cc")
 endif()
 
 #external source
 file(GLOB sdk_external_tinnyxml2_src "src/external/tinyxml2/*.cpp")
 
 if (NOT OSS_DISABLE_ENCRYPTION OR NOT OSS_DISABLE_RESUAMABLE)
-file(GLOB sdk_external_json_src "src/external/json/*.cpp")
+	file(GLOB sdk_external_json_src "src/external/json/*.cpp")
 endif()
 
 
@@ -195,4 +195,5 @@ endif()
 
 if(CC_INSTALL_ALIYUNOSS)
 	INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include/oss/ FILES_MATCHING PATTERN "*.h")
+	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/oss/Config.h DESTINATION include/oss/)
 endif()
