@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "Config.h"
+#include <alibabacloud/oss/Config.h>
 
 #if defined(_WIN32)
 #   ifdef _MSC_VER
