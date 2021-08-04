@@ -195,5 +195,5 @@ endif()
 
 if(CC_INSTALL_ALIYUNOSS)
 	INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include/oss/ FILES_MATCHING PATTERN "*.h")
-	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/alibabacloud/oss/Config.h DESTINATION include/oss/)
+	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/alibabacloud/oss/Config.h DESTINATION include/oss/alibabacloud/oss/)
 endif()
