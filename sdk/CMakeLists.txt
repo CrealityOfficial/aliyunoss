@@ -158,9 +158,10 @@ set(EXTERNAL_LIBS ssl crypto curl)
 set(DYN_MODULE_NAME AliyunOss)
 #shared lib
 if (BUILD_SHARED_LIBS)
-    __add_real_target(${DYN_MODULE_NAME} dll SOURCE
-												${sdk_header} ${sdk_src}
-											 LIB ${EXTERNAL_LIBS}
+    __add_real_target(${DYN_MODULE_NAME} dll 
+	                      SOURCE ${sdk_header} ${sdk_src}
+						  LIB ${EXTERNAL_LIBS}
+						  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_BINARY_DIR}/
 		)
     
     #set_target_properties(${MODULE_NAME}
