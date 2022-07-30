@@ -122,38 +122,9 @@ file(GLOB sdk_src
 )
 
 set(EXTERNAL_LIBS ssl crypto curl)
-#extra define pass to source code
-#if (BUILD_TESTS)
-#    set(EXTRA_DEFINE "-DENABLE_OSS_TEST")
-#else()
-#    set(EXTRA_DEFINE "")
-#endif()
-    
-#static lib
-#add_library(${PROJECT_NAME}${STATIC_LIB_SUFFIX} STATIC
-#    ${sdk_header}
-#    ${sdk_src})
-#    
-#set_target_properties(${PROJECT_NAME}${STATIC_LIB_SUFFIX}
-#    PROPERTIES
-#    LINKER_LANGUAGE CXX
-#    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
-#    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
-#    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
-#    OUTPUT_NAME ${TARGET_OUTPUT_NAME_PREFIX}${PROJECT_NAME}${STATIC_LIB_SUFFIX}
-#    )
-#
-#target_include_directories(${PROJECT_NAME}${STATIC_LIB_SUFFIX}
-#    PRIVATE include
-#    PRIVATE include/alibabacloud/oss    
-#    PRIVATE src/external/)
-#
-#target_include_directories(${PROJECT_NAME}${STATIC_LIB_SUFFIX}
-#    PRIVATE ${CRYPTO_INCLUDE_DIRS}
-#    PRIVATE ${CLIENT_INCLUDE_DIRS})
-#
-#target_compile_options(${PROJECT_NAME}${STATIC_LIB_SUFFIX} 
-#    PRIVATE "${SDK_COMPILER_FLAGS}" "${EXTRA_DEFINE}")
+if(CC_BC_WIN)
+	list(APPEND EXTERNAL_LIBS Ws2_32.lib)
+endif()
 
 set(DYN_MODULE_NAME AliyunOss)
 #shared lib
