@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+__cc_find(openssl)
+__cc_find(curl)
+
 #Options
 option(BUILD_SHARED_LIBS  "Enable shared library" ON)
 option(ENABLE_RTTI "Flag to enable/disable building code with RTTI information" ON)
