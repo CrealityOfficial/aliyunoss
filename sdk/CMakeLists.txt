@@ -157,41 +157,25 @@ set(EXTERNAL_LIBS ssl crypto curl)
 
 set(DYN_MODULE_NAME AliyunOss)
 #shared lib
-if (BUILD_SHARED_LIBS)
+if (1)
     __add_real_target(${DYN_MODULE_NAME} dll 
 	                      SOURCE ${sdk_header} ${sdk_src}
 						  LIB ${EXTERNAL_LIBS}
 						  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_BINARY_DIR}/
 		)
     
-    #set_target_properties(${MODULE_NAME}
-    #    PROPERTIES
-    #    LINKER_LANGUAGE CXX
-    #    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
-    #    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
-    #    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
-    #    OUTPUT_NAME ${TARGET_OUTPUT_NAME_PREFIX}${PROJECT_NAME}
-    #    )
-    
     target_include_directories(${DYN_MODULE_NAME}
         PRIVATE include
         PRIVATE include/alibabacloud/oss    
         PRIVATE src/external/)
     
-    #target_include_directories(${DYN_MODULE_NAME}
-    #    PRIVATE ${CRYPTO_INCLUDE_DIRS}
-    #    PRIVATE ${CLIENT_INCLUDE_DIRS})
-
     target_compile_options(${DYN_MODULE_NAME} 
         PRIVATE "${SDK_COMPILER_FLAGS}" -DALIBABACLOUD_SHARED -DALIBABACLOUD_OSS_LIBRARY)
     
     if(NOT CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 		target_compile_options(${DYN_MODULE_NAME} 
 			PRIVATE "-fvisibility=hidden")
-    endif()
-
-    #target_link_libraries(${PROJECT_NAME} ${CRYPTO_LIBS})
-    #target_link_libraries(${PROJECT_NAME} ${CLIENT_LIBS})    
+    endif()   
 endif()
 
 if(CC_INSTALL_ALIYUNOSS)
