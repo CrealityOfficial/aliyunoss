@@ -50,6 +50,7 @@ add_definitions(-DPLATFORM_${TARGET_OS})
 
 if(NOT WIN32)
 	add_compile_options(-fPIC)
+	add_definitions(-w)
 endif()
 
 #Find dependency Library, curl, openssl
