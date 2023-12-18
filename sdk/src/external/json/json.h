@@ -238,17 +238,17 @@ license you like.
 #define JSON_HAS_RVALUE_REFERENCES 0
 #endif
 
-#ifdef __clang__
-#  if __has_extension(attribute_deprecated_with_message)
-#    define JSONCPP_DEPRECATED(message)  __attribute__ ((deprecated(message)))
-#  endif
-#elif defined __GNUC__ // not clang (gcc comes later since clang emulates gcc)
-#  if (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5))
-#    define JSONCPP_DEPRECATED(message)  __attribute__ ((deprecated(message)))
-#  elif (__GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1))
-#    define JSONCPP_DEPRECATED(message)  __attribute__((__deprecated__))
-#  endif  // GNUC version
-#endif // __clang__ || __GNUC__
+//#ifdef __clang__
+//#  if __has_extension(attribute_deprecated_with_message)
+//#    define JSONCPP_DEPRECATED(message)  __attribute__ ((deprecated(message)))
+//#  endif
+//#elif defined __GNUC__ // not clang (gcc comes later since clang emulates gcc)
+//#  if (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5))
+//#    define JSONCPP_DEPRECATED(message)  __attribute__ ((deprecated(message)))
+//#  elif (__GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1))
+//#    define JSONCPP_DEPRECATED(message)  __attribute__((__deprecated__))
+//#  endif  // GNUC version
+//#endif // __clang__ || __GNUC__
 
 #if !defined(JSONCPP_DEPRECATED)
 #define JSONCPP_DEPRECATED(message)
