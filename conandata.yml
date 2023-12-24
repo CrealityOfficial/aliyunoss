@@ -5,5 +5,5 @@ repository: http://172.20.180.12:8050/yanfa4/thirdparty/aliyunoss
 external_repository: https://github.com/CrealityOfficial/aliyunoss
 description: aliyunoss
 topics: net,aliyun,oss
-build_deps: curl/0.0.2
-search_deps: curl/0.0.2
+build_deps: curl_static/1.0.0,openssl/0.0.2
+search_deps: curl_static/1.0.0,openssl/0.0.2

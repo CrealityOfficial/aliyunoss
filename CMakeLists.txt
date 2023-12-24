@@ -15,7 +15,7 @@
 #
 
 __cc_find(openssl)
-__cc_find(curl)
+__cc_find(curl_static)
 
 #Options
 option(BUILD_SHARED_LIBS  "Enable shared library" ON)

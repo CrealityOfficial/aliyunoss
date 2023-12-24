@@ -121,15 +121,15 @@ file(GLOB sdk_src
     ${sdk_external_tinnyxml2_src}
 )
 
-set(EXTERNAL_LIBS ssl crypto curl)
+set(EXTERNAL_LIBS ssl crypto curl_static)
 if(CC_BC_WIN)
 	list(APPEND EXTERNAL_LIBS Ws2_32.lib)
 endif()
 
-set(DYN_MODULE_NAME AliyunOss)
+set(DYN_MODULE_NAME aliyunoss_static)
 #shared lib
 if (1)
-    __add_real_target(${DYN_MODULE_NAME} dll 
+    __add_real_target(${DYN_MODULE_NAME} lib 
 	                      SOURCE ${sdk_header} ${sdk_src}
 						  LIB ${EXTERNAL_LIBS}
 						  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_BINARY_DIR}/
@@ -141,7 +141,7 @@ if (1)
         PRIVATE src/external/)
     
     target_compile_options(${DYN_MODULE_NAME} 
-        PRIVATE "${SDK_COMPILER_FLAGS}" -DALIBABACLOUD_SHARED -DALIBABACLOUD_OSS_LIBRARY)
+        PRIVATE "${SDK_COMPILER_FLAGS}" -DALIBABACLOUD_OSS_LIBRARY)
     
     if(NOT CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
 		target_compile_options(${DYN_MODULE_NAME} 
@@ -149,7 +149,7 @@ if (1)
     endif()   
 endif()
 
-if(CC_INSTALL_ALIYUNOSS)
+if(CC_INSTALL_ALIYUNOSS_STATIC)
 	if(HAVE_CONAN_CACHE OR CREATE_CONAN_PACKAGE)
 		INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include/ FILES_MATCHING PATTERN "*.h")
 		INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/alibabacloud/oss/Config.h DESTINATION include/alibabacloud/oss/)
